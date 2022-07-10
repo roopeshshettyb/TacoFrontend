@@ -1,10 +1,7 @@
 import { Avatar } from "antd";
-import dynamic from "next/dynamic";
-//import ReactQuill from "react-quill";
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-import "react-quill/dist/quill.snow.css";
 import { CameraOutlined, LoadingOutlined } from "@ant-design/icons";
+
+
 
 const PostForm = ({
   content,
@@ -14,14 +11,15 @@ const PostForm = ({
   postSubmit,
   handleImage,
 }) => {
+
   return (
     <div className="card">
       <div className="card-body pb-3">
         <form className="form-group">
-          <ReactQuill
-            theme="snow"
+          <input
             value={content}
-            onChange={(e) => setContent(e)}
+            type="text"
+            onChange={(e) => setContent(e.target.value)}
             className="form-control"
             placeholder="Write"
           />

@@ -1,4 +1,3 @@
-import renderHTML from "react-render-html";
 import moment from "moment";
 import { Avatar, List } from "antd";
 import PostImage from "../images/PostImage";
@@ -33,9 +32,9 @@ const People = ({ people, handleFollow, handleUnfollow }) => {
                   </Link>
 
                   {state &&
-                  state.user &&
-                  user.followers &&
-                  user.followers.includes(state.user._id) ? (
+                    state.user &&
+                    user.followers &&
+                    user.followers.includes(state.user._id) ? (
                     <span
                       onClick={() => handleUnfollow(user)}
                       className="text-primary pointer"

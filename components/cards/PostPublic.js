@@ -1,5 +1,7 @@
 //@ts-ignore
-import renderHTML from "react-render-html";
+// import renderHTML from "react-render-html";
+const HtmlToReactParser = require('html-to-react').Parser;
+const htmlToReactParser = new HtmlToReactParser();
 import moment from "moment";
 import { Avatar } from "antd";
 import PostImage from "../images/PostImage";
@@ -75,14 +77,14 @@ const PostPublic = ({
               {moment(post.createdAt).fromNow()}
             </span>
           </div>
-          <div className="card-body">{renderHTML(post.content)}</div>
+          <div className="card-body">{htmlToReactParser.parse(post.content)}</div>
           <div className="card-footer">
             {post.image && <PostImage url={post.image.url} />}
             <div className="d-flex pt-2">
               {state &&
-              state.user &&
-              post.likes &&
-              post.likes.includes(state.user._id) ? (
+                state.user &&
+                post.likes &&
+                post.likes.includes(state.user._id) ? (
                 <HeartFilled className="text-danger pt-2 h5" />
               ) : (
                 <HeartOutlined className="text-danger pt-2 h5" />

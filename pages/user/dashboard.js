@@ -211,7 +211,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="row py-2">
+        <div className="row py-2" style={{ 'display': 'flex', 'justifyContent': 'center' }}>
           <div className="col-md-6">
             <PostForm
               content={content}
@@ -232,14 +232,14 @@ const Dashboard = () => {
             />
             <Pagination
               current={page}
-              total={(totalPosts / 3) * 10}
+              total={Math.round((totalPosts / 3) * 10)}
               onChange={(value) => setPage(value)}
               className="pb-5"
             ></Pagination>
           </div>
           {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
 
-          <div className="col-md-4 pb-5">
+          <div className="col-md-4 pb-10 px-5">
             <Search />
             <br />
             {state && state.user && state.user.following && (

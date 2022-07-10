@@ -1,5 +1,4 @@
 //@ts-ignore
-import renderHTML from "react-render-html";
 import moment from "moment";
 import { Avatar } from "antd";
 import PostImage from "../images/PostImage";

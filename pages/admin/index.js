@@ -1,9 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context";
 import AdminRoute from "../../components/routes/AdminRoute";
-import renderHTML from "react-render-html";
+// import htmlToReactParser.parse from "react-render-html";
 import axios from "axios";
 import { toast } from "react-toastify";
+const HtmlToReactParser = require('html-to-react').Parser;
+const htmlToReactParser = new HtmlToReactParser();
+
+
 
 const Admin = () => {
   const [state, setState] = useContext(UserContext);
@@ -69,7 +73,7 @@ const Admin = () => {
               posts.map((post) => (
                 <div key={post._id} className="d-flex justify-content-between">
                   <div>
-                    {renderHTML(post.content)} - <b>{post.postedBy.name}</b>{" "}
+                    {htmlToReactParser.parse(post.content)} - <b>{post.postedBy.name}</b>{" "}
                   </div>
                   <div
                     onClick={() => handleDelete(post)}
