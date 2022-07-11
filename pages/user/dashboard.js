@@ -6,7 +6,7 @@ import CommentForm from "../../components/forms/CommentForm";
 import { userRouter, useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
-import PostList from "../../components/cards/Postlist";
+import PostList from "../../components/cards/PostList";
 import People from "../../components/cards/People";
 import Link from "next/link";
 import { Modal, Pagination } from "antd";
