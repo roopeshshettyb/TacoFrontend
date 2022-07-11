@@ -25,7 +25,7 @@ const Nav = () => {
       {
         <Link href="/">
           <a className={`nav-link  text-light ${current === "/" && "active"}`}>
-            <Avatar src="./images/logo.png" />
+            <Avatar src="https://res.cloudinary.com/fortacos/image/upload/v1657539059/logo_hsxtvb.png" />
             Taco
           </a>
         </Link>

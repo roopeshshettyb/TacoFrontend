@@ -31,7 +31,7 @@ const PostList = ({
     if (user.image) {
       return user.image.url;
     } else {
-      return "/images/logo.png";
+      return "https://res.cloudinary.com/fortacos/image/upload/v1657539059/logo_hsxtvb.png";
     }
   };
   return (
