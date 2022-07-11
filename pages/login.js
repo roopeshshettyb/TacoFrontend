@@ -43,7 +43,7 @@ const Login = () => {
     }
   };
 
-  if (state && state.token) router.push(config.NEXT_PUBLIC_API + "/user/dashboard");
+  if (state && state.token) router.push("/user/dashboard");
 
   return (
     <div className="container-fluid">

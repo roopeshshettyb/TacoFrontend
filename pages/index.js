@@ -8,7 +8,7 @@ import Link from "next/link";
 import io from "socket.io-client";
 const config = require("../config.js").config
 const socket = io(
-  config.NEXT_PUBLIC_SOCKETIO,
+  config.SOCKETIO_CONNECTION_URL,
   { path: "/socket.io" },
   {
     reconnection: true,

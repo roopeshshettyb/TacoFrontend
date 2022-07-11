@@ -25,7 +25,7 @@ const Nav = () => {
       {
         <Link href="/">
           <a className={`nav-link  text-light ${current === "/" && "active"}`}>
-            <Avatar src="/images/logo.png" />
+            <Avatar src="./images/logo.png" />
             Taco
           </a>
         </Link>
@@ -47,9 +47,8 @@ const Nav = () => {
               <li>
                 <Link href="/user/dashboard">
                   <a
-                    className={`nav-link dropdown-item  ${
-                      current === "/user/dashboard" && "active"
-                    }`}
+                    className={`nav-link dropdown-item  ${current === "/user/dashboard" && "active"
+                      }`}
                   >
                     Dashboard
                   </a>
@@ -59,9 +58,8 @@ const Nav = () => {
               <li>
                 <Link href="/user/profile/update">
                   <a
-                    className={`nav-link dropdown-item  ${
-                      current === "/user/profile/update" && "active"
-                    }`}
+                    className={`nav-link dropdown-item  ${current === "/user/profile/update" && "active"
+                      }`}
                   >
                     Profile
                   </a>
@@ -72,9 +70,8 @@ const Nav = () => {
                 <li>
                   <Link href="/admin">
                     <a
-                      className={`nav-link dropdown-item  ${
-                        current === "/admin" && "active"
-                      }`}
+                      className={`nav-link dropdown-item  ${current === "/admin" && "active"
+                        }`}
                     >
                       Admin
                     </a>
@@ -94,18 +91,16 @@ const Nav = () => {
         <>
           <Link href="/login">
             <a
-              className={`nav-link  text-light ${
-                current === "/login" && "active"
-              }`}
+              className={`nav-link  text-light ${current === "/login" && "active"
+                }`}
             >
               Login
             </a>
           </Link>
           <Link href="/register">
             <a
-              className={`nav-link  text-light ${
-                current === "/register" && "active"
-              }`}
+              className={`nav-link  text-light ${current === "/register" && "active"
+                }`}
             >
               Register
             </a>
