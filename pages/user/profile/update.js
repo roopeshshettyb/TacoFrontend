@@ -6,7 +6,7 @@ import Link from "next/link";
 import { UserContext } from "../../../context";
 import { Router, useRouter } from "next/router";
 import { LoadingOutlined, CameraOutlined } from "@ant-design/icons";
-
+const config = require("../../../config").config
 import AuthForm from "../../../components/forms/AuthForm";
 
 const ProfileUpdate = () => {
@@ -39,7 +39,7 @@ const ProfileUpdate = () => {
     //console.log(name, email, password, secret);
     try {
       setLoading(true);
-      const { data } = await axios.put(`/profile-update`, {
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + `/profile-update`, {
         username,
         about,
         name: name,
@@ -74,7 +74,7 @@ const ProfileUpdate = () => {
     //console.log([...formData]);
     setUploading(true);
     try {
-      const { data } = await axios.post("/upload-image", formData);
+      const { data } = await axios.post(config.NEXT_PUBLIC_API + "/upload-image", formData);
       console.log("uploaded", data);
       setUploading(false);
       setImage({

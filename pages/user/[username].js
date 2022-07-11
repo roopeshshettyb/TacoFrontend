@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { RollbackOutlined } from "@ant-design/icons";
 import Link from "next/link";
+const config = require("../../config").config
 
 const { Meta } = Card;
 const Username = () => {
@@ -19,7 +20,7 @@ const Username = () => {
 
   const fetchUser = async () => {
     try {
-      const { data } = await axios.get(`/user/${router.query.username}`);
+      const { data } = await axios.get(config.NEXT_PUBLIC_API + `/user/${router.query.username}`);
       console.log(data);
 
       setUser(data);

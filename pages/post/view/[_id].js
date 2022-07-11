@@ -3,6 +3,7 @@ import axios from "axios";
 import PostPublic from "../../../components/cards/PostPublic";
 import Head from "next/head";
 import Link from "next/link";
+const config = require("../../../config").config
 
 const SinglePost = ({ post }) => {
   const head = () => (
@@ -44,7 +45,7 @@ const SinglePost = ({ post }) => {
 };
 
 export async function getServerSideProps(ctx) {
-  const { data } = await axios.get(`/post/${ctx.params._id}`);
+  const { data } = await axios.get(config.NEXT_PUBLIC_API + `/post/${ctx.params._id}`);
   //console.log(data);
   return {
     props: {

@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Post from "../../components/cards/Post";
 import Link from "next/link";
 import { RollbackOutlined } from "@ant-design/icons";
+const config = require("../../config").config
 
 const PostComments = () => {
   const [post, setPost] = useState();
@@ -18,7 +19,7 @@ const PostComments = () => {
   const fetchPost = async () => {
     try {
       console.log("fetchpost", data);
-      const { data } = await axios.get(`/user-post/${_id}`);
+      const { data } = await axios.get(config.NEXT_PUBLIC_API + `/user-post/${_id}`);
       console.log("fetchpost2", data);
       setPost(data);
     } catch (err) {
@@ -31,7 +32,7 @@ const PostComments = () => {
     try {
       const answer = window.confirm("Are you sure?");
       if (!answer) return;
-      const { data } = await axios.put(`/remove-comment`, {
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + `/remove-comment`, {
         postId,
         comment,
       });

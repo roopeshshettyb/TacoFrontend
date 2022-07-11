@@ -12,9 +12,10 @@ import Link from "next/link";
 import { Modal, Pagination } from "antd";
 import Search from "../../components/Search";
 import io from "socket.io-client";
+const config = require("../../config").config
 
 const socket = io(
-  process.env.NEXT_PUBLIC_SOCKETIO,
+  config.NEXT_PUBLIC_SOCKETIO,
   { path: "/socket.io" },
   {
     reconnection: true,
@@ -46,7 +47,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     try {
-      axios.get("/total-posts").then(({ data }) => setTotalPosts(data));
+      axios.get(config.NEXT_PUBLIC_API + "/total-posts").then(({ data }) => setTotalPosts(data));
     } catch (err) {
       console.log(err);
     }
@@ -54,7 +55,7 @@ const Dashboard = () => {
 
   const fetchUserPosts = async () => {
     try {
-      const { data } = await axios.get(`/user-posts/${page}`);
+      const { data } = await axios.get(config.NEXT_PUBLIC_API + `/user-posts/${page}`);
       setPosts(data);
     } catch (err) {
       console.log(err);
@@ -63,7 +64,7 @@ const Dashboard = () => {
 
   const findPeople = async () => {
     try {
-      const { data } = await axios.get("/find-people");
+      const { data } = await axios.get(config.NEXT_PUBLIC_API + "/find-people");
       setPeople(data);
     } catch (err) {
       console.log(err);
@@ -74,7 +75,7 @@ const Dashboard = () => {
     e.preventDefault();
     //console.log("Post =>", content);
     try {
-      const { data } = await axios.post("/create-post", { content, image });
+      const { data } = await axios.post(config.NEXT_PUBLIC_API + "/create-post", { content, image });
       console.log("Response", data);
       if (data.error) {
         toast.error(data.error);
@@ -99,7 +100,7 @@ const Dashboard = () => {
     //console.log([...formData]);
     setUploading(true);
     try {
-      const { data } = await axios.post("/upload-image", formData);
+      const { data } = await axios.post(config.NEXT_PUBLIC_API + "/upload-image", formData);
       console.log("uploaded", data);
       setUploading(false);
       setImage({
@@ -116,7 +117,7 @@ const Dashboard = () => {
     try {
       const answer = window.confirm("Are you sure?");
       if (!answer) return;
-      const { data } = await axios.delete(`/delete-post/${post._id}`);
+      const { data } = await axios.delete(config.NEXT_PUBLIC_API + `/delete-post/${post._id}`);
       toast.error("Post Deleted");
       fetchUserPosts();
     } catch (err) {
@@ -127,7 +128,7 @@ const Dashboard = () => {
   const handleFollow = async (user) => {
     //console.log("Add to following", user._id);
     try {
-      const { data } = await axios.put("/user-follow", { _id: user._id });
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + "/user-follow", { _id: user._id });
       let auth = JSON.parse(localStorage.getItem("auth"));
       auth.user = data;
       localStorage.setItem("auth", JSON.stringify(auth));
@@ -145,7 +146,7 @@ const Dashboard = () => {
   const handleLike = async (_id) => {
     //console.log("Like this post", _id);
     try {
-      const { data } = await axios.put(`/like-post`, { _id });
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + `/like-post`, { _id });
       console.log("liked data", data);
       fetchUserPosts();
     } catch (err) {
@@ -156,7 +157,7 @@ const Dashboard = () => {
   const handleUnlike = async (_id) => {
     //console.log("UnLike this post", _id);
     try {
-      const { data } = await axios.put(`/unlike-post`, { _id });
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + `/unlike-post`, { _id });
       console.log("unliked data", data);
       fetchUserPosts();
     } catch (err) {
@@ -174,7 +175,7 @@ const Dashboard = () => {
     // console.log("add comment", currentPost._id);
     // console.log("comment", comment);
     try {
-      const { data } = await axios.put("/add-comment", {
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + "/add-comment", {
         postId: currentPost._id,
         comment,
       });
@@ -191,7 +192,7 @@ const Dashboard = () => {
     let answer = window.confirm("Are you sure?");
     if (!answer) return;
     try {
-      const { data } = await axios.put(`/remove-comment`, {
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + `/remove-comment`, {
         postId,
         comment,
       });

@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const HtmlToReactParser = require('html-to-react').Parser;
 const htmlToReactParser = new HtmlToReactParser();
-
+const config = require("../../config").config
 
 
 const Admin = () => {
@@ -24,7 +24,7 @@ const Admin = () => {
 
   const fetchUserPosts = async () => {
     try {
-      const { data } = await axios.get(`/posts`);
+      const { data } = await axios.get(config.NEXT_PUBLIC_API + `/posts`);
       setPosts(data);
     } catch (err) {
       console.log(err);
@@ -35,7 +35,7 @@ const Admin = () => {
     try {
       const answer = window.confirm("Are you sure?");
       if (!answer) return;
-      const { data } = await axios.delete(`/admin/delete-post/${post._id}`);
+      const { data } = await axios.delete(config.NEXT_PUBLIC_API + `/admin/delete-post/${post._id}`);
       toast.error("Post Deleted");
       fetchUserPosts();
     } catch (err) {
@@ -47,7 +47,7 @@ const Admin = () => {
     let answer = window.confirm("Are you sure?");
     if (!answer) return;
     try {
-      const { data } = await axios.put(`/remove-comment`, {
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + `/remove-comment`, {
         postId,
         comment,
       });

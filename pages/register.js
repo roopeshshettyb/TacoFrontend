@@ -5,7 +5,7 @@ import { Modal } from "antd";
 import Link from "next/link";
 import { UserContext } from "../context";
 import { Router, useRouter } from "next/router";
-
+const config = require("../config.js").config
 import AuthForm from "../components/forms/AuthForm";
 
 const Register = () => {
@@ -23,7 +23,7 @@ const Register = () => {
     //console.log(name, email, password, secret);
     try {
       setLoading(true);
-      const { data } = await axios.post(`/register`, {
+      const { data } = await axios.post(config.NEXT_PUBLIC_API + `/register`, {
         name: name,
         email: email,
         password: password,

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { RollbackOutlined } from "@ant-design/icons";
 import Link from "next/link";
+const config = require("../../config").config
 
 const Following = () => {
   const [state, setState] = useContext(UserContext);
@@ -18,7 +19,7 @@ const Following = () => {
 
   const fetchFollowing = async () => {
     try {
-      const { data } = await axios.get("/user-following");
+      const { data } = await axios.get(config.NEXT_PUBLIC_API + "/user-following");
       console.log(data);
 
       setPeople(data);
@@ -37,7 +38,7 @@ const Following = () => {
 
   const handleUnfollow = async (user) => {
     try {
-      const { data } = axios.put("/user-unfollow", { _id: user._id });
+      const { data } = axios.put(config.NEXT_PUBLIC_API + "/user-unfollow", { _id: user._id });
       let auth = JSON.parse(localStorage.getItem("auth"));
       auth.user = data;
       localStorage.setItem("auth", JSON.stringify(auth));

@@ -6,10 +6,10 @@ import Link from "next/link";
 import AuthForm from "../components/forms/AuthForm";
 import { useRouter } from "next/router";
 import { UserContext } from "../context";
-
+const config = require("../config.js").config
 const Login = () => {
-  const [email, setEmail] = useState("true@gmail.com");
-  const [password, setPassword] = useState("faketfue");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [state, setState] = useContext(UserContext);
   const router = useRouter();
@@ -19,7 +19,7 @@ const Login = () => {
     try {
       // console.log(name, email, password, secret);
       setLoading(true);
-      const { data } = await axios.post(`/login`, {
+      const { data } = await axios.post(config.NEXT_PUBLIC_API + `/login`, {
         email,
         password,
       });
@@ -43,7 +43,7 @@ const Login = () => {
     }
   };
 
-  if (state && state.token) router.push("/user/dashboard");
+  if (state && state.token) router.push(config.NEXT_PUBLIC_API + "/user/dashboard");
 
   return (
     <div className="container-fluid">

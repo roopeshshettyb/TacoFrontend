@@ -6,9 +6,9 @@ import PostPublic from "../components/cards/PostPublic";
 import Head from "next/head";
 import Link from "next/link";
 import io from "socket.io-client";
-
+const config = require("../config.js").config
 const socket = io(
-  process.env.NEXT_PUBLIC_SOCKETIO,
+  config.NEXT_PUBLIC_SOCKETIO,
   { path: "/socket.io" },
   {
     reconnection: true,
@@ -79,7 +79,7 @@ const Home = ({ posts }) => {
 };
 
 export async function getServerSideProps() {
-  const { data } = await axios.get("/posts");
+  const { data } = await axios.get(config.NEXT_PUBLIC_API + "/posts");
   //console.log(data);
   return {
     props: {

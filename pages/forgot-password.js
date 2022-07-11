@@ -5,7 +5,7 @@ import { Modal } from "antd";
 import Link from "next/link";
 import { UserContext } from "../context";
 import { Router, useRouter } from "next/router";
-
+const config = require("../config.js").config
 import ForgotPasswordForm from "../components/forms/ForgotPasswordForm";
 
 const ForgotPassword = () => {
@@ -22,7 +22,7 @@ const ForgotPassword = () => {
     try {
       // console.log(name, email, password, secret);
       setLoading(true);
-      const { data } = await axios.post(`/forgot-password`, {
+      const { data } = await axios.post(config.NEXT_PUBLIC_API + `/forgot-password`, {
         email,
         newPassword,
         secret,

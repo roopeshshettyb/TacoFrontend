@@ -4,6 +4,7 @@ import axios from "axios";
 import PostForm from "../../../components/forms/PostForm";
 import UserRoute from "../../../components/routes/UserRoute";
 import { toast } from "react-toastify";
+const config = require("../../../config").config
 
 const EditPost = () => {
   const [post, setPost] = useState({});
@@ -19,7 +20,7 @@ const EditPost = () => {
   }, [_id]);
   const fetchPost = async () => {
     try {
-      const { data } = await axios.get(`/user-post/${_id}`);
+      const { data } = await axios.get(config.NEXT_PUBLIC_API + `/user-post/${_id}`);
       setPost(data);
       setContent(data.content);
       setImage(data.image);
@@ -31,7 +32,7 @@ const EditPost = () => {
   const postSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put(`/update-post/${_id}`, {
+      const { data } = await axios.put(config.NEXT_PUBLIC_API + `/update-post/${_id}`, {
         content,
         image,
       });
@@ -53,7 +54,7 @@ const EditPost = () => {
     //console.log([...formData]);
     setUploading(true);
     try {
-      const { data } = await axios.post("/upload-image", formData);
+      const { data } = await axios.post(config.NEXT_PUBLIC_API + "/upload-image", formData);
       console.log("uploaded", data);
       setUploading(false);
       setImage({
